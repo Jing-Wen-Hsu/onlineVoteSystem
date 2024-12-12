@@ -2,7 +2,6 @@ package onlineVoteSystem.onlineVoteSystem.service;
 
 import onlineVoteSystem.onlineVoteSystem.repository.UserRepository;
 import onlineVoteSystem.onlineVoteSystem.utils.PasswordUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -14,10 +13,11 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
+//註冊
     public String registerUser(String username, String password) {
         // 檢查用戶是否已存在
-        if (userRepository.existsByUsername(username)) {
+        if (userRepository.checkUsernameExists(username)) {
+
             return "用戶名已存在";
         }
 
