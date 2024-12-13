@@ -2,7 +2,6 @@ package onlineVoteSystem.onlineVoteSystem.service;
 
 import jakarta.validation.Valid;
 import onlineVoteSystem.onlineVoteSystem.dto.register.RegisterDTO;
-import onlineVoteSystem.onlineVoteSystem.entity.User;
 import onlineVoteSystem.onlineVoteSystem.repository.UserRepository;
 import onlineVoteSystem.onlineVoteSystem.utils.PasswordUtil;
 import org.springframework.stereotype.Service;
@@ -34,6 +33,5 @@ public class UserService {
             return e.getMessage();  // 如果用戶名已存在，會觸發錯誤
             }
     }
-
 
 }
