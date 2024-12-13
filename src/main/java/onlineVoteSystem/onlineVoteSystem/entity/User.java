@@ -37,19 +37,19 @@ public class User {
         this.userId = userId;
     }
 
-    public @NotEmpty(message = "姓名為必填項目") String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(@NotEmpty(message = "姓名為必填項目") String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public @NotEmpty(message = "密碼為必填項目") @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$", message = "密碼必須至少8位，並包含字母和數字") String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(@NotEmpty(message = "密碼為必填項目") @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$", message = "密碼必須至少8位，並包含字母和數字") String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }

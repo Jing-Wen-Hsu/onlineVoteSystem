@@ -23,21 +23,16 @@ public class VoteItem {
     @Column(nullable = false)
     private Integer voteCount  = 0;   // 記錄該投票項目的投票次數，預設為0
 
-    @ManyToOne
-    @JoinColumn(name = "vote_topic_id", nullable = false)
-    private VoteTopic voteTopic; // 關聯到投票主題
-
     @OneToMany(mappedBy = "voteItem")
     private List<VoteRecord> voteRecords;
 
     public VoteItem() {
     }
 
-    public VoteItem(Long voteItemId, String voteItemName, Integer voteCount, VoteTopic voteTopic, List<VoteRecord> voteRecords) {
+    public VoteItem(Long voteItemId, String voteItemName, Integer voteCount, List<VoteRecord> voteRecords) {
         this.voteItemId = voteItemId;
         this.voteItemName = voteItemName;
         this.voteCount = voteCount;
-        this.voteTopic = voteTopic;
         this.voteRecords = voteRecords;
     }
 
@@ -65,13 +60,6 @@ public class VoteItem {
         this.voteCount = voteCount;
     }
 
-    public VoteTopic getVoteTopic() {
-        return voteTopic;
-    }
-
-    public void setVoteTopic(VoteTopic voteTopic) {
-        this.voteTopic = voteTopic;
-    }
 
     public List<VoteRecord> getVoteRecords() {
         return voteRecords;
