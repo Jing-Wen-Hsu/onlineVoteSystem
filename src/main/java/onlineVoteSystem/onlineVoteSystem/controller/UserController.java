@@ -1,7 +1,9 @@
 package onlineVoteSystem.onlineVoteSystem.controller;
 
-import onlineVoteSystem.onlineVoteSystem.entity.User;
+import jakarta.validation.Valid;
+import onlineVoteSystem.onlineVoteSystem.dto.register.RegisterDTO;
 import onlineVoteSystem.onlineVoteSystem.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +19,13 @@ public class UserController {
         this.userService = userService;
     }
     //用戶註冊
+//    @PostMapping("/register")
+//    public String register(@RequestBody @Valid RegisterDTO registerDTO) {
+//        return userService.registerUser(registerDTO);
+//    }
+
     @PostMapping("/register")
-    public String register(@RequestBody User user) {
-        return userService.registerUser(user.getUsername(), user.getPassword());
+    public ResponseEntity<String> register(@RequestBody @Valid RegisterDTO registerDTO) {
+        return ResponseEntity.ok(userService.registerUser(registerDTO));
     }
 }

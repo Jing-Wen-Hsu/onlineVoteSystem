@@ -1,5 +1,8 @@
 package onlineVoteSystem.onlineVoteSystem.service;
 
+import jakarta.validation.Valid;
+import onlineVoteSystem.onlineVoteSystem.dto.register.RegisterDTO;
+import onlineVoteSystem.onlineVoteSystem.entity.User;
 import onlineVoteSystem.onlineVoteSystem.repository.UserRepository;
 import onlineVoteSystem.onlineVoteSystem.utils.PasswordUtil;
 import org.springframework.stereotype.Service;
@@ -13,20 +16,24 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-//註冊
-    public String registerUser(String username, String password) {
+    // 註冊
+    public String registerUser(@Valid RegisterDTO registerDTO) {
         // 檢查用戶是否已存在
-        if (userRepository.checkUsernameExists(username)) {
-
+        if (userRepository.checkUsernameExists(registerDTO.getUsername())) {
             return "用戶名已存在";
         }
 
         // 使用 PasswordUtil 加密密碼
-        String hashedPassword = PasswordUtil.encodePassword(password);
+        String hashedPassword = PasswordUtil.encodePassword(registerDTO.getPassword());
 
         // 調用儲存過程來註冊用戶
-        userRepository.registerUser(username, hashedPassword);
-
-        return "註冊成功";
+        try {
+            userRepository.registerUser(registerDTO.getUsername(), hashedPassword);
+            return "註冊成功";
+        } catch (Exception e) {
+            return e.getMessage();  // 如果用戶名已存在，會觸發錯誤
+            }
     }
+
+
 }
