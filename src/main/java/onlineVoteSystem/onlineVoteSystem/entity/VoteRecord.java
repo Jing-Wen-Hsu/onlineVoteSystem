@@ -11,9 +11,9 @@ public class VoteRecord {
     @Column(name = "vote_record_id")
     private Long voteRecordId;
 
-    @Size(min = 2, max = 100, message = "投票者姓名長度應介於 2 到 100 之間")
-    @Column(name = "voter" , nullable = false)
-    private String voter;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    private User user;  // 每個投票紀錄都與一位使用者關聯
 
     @ManyToOne
     @JoinColumn(name = "vote_item_id", referencedColumnName = "vote_item_id", nullable = false)
@@ -22,10 +22,18 @@ public class VoteRecord {
     public VoteRecord() {
     }
 
-    public VoteRecord(Long voteRecordId, String voter, Long voteItemId, VoteItem voteItem) {
+    public VoteRecord(Long voteRecordId, User user, VoteItem voteItem) {
         this.voteRecordId = voteRecordId;
-        this.voter = voter;
+        this.user = user;
         this.voteItem = voteItem;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getVoteRecordId() {
@@ -34,14 +42,6 @@ public class VoteRecord {
 
     public void setVoteRecordId(Long voteRecordId) {
         this.voteRecordId = voteRecordId;
-    }
-
-    public String getVoter() {
-        return voter;
-    }
-
-    public void setVoter(String voter) {
-        this.voter = voter;
     }
 
 

@@ -20,8 +20,8 @@ public class VoteItem {
     @Column(name = "vote_item_name", length = 100 , nullable = false)
     private String voteItemName;
 
-    @Column(nullable = false)
-    private Integer voteCount  = 0;   // 記錄該投票項目的投票次數，預設為0
+    @Column(name = "vote_item_count", nullable = false)
+    private Integer voteItemCount;   // 記錄該投票項目的投票次數
 
     @OneToMany(mappedBy = "voteItem")
     private List<VoteRecord> voteRecords;
@@ -29,10 +29,10 @@ public class VoteItem {
     public VoteItem() {
     }
 
-    public VoteItem(Long voteItemId, String voteItemName, Integer voteCount, List<VoteRecord> voteRecords) {
+    public VoteItem(Long voteItemId, String voteItemName, Integer voteItemCount, List<VoteRecord> voteRecords) {
         this.voteItemId = voteItemId;
         this.voteItemName = voteItemName;
-        this.voteCount = voteCount;
+        this.voteItemCount = voteItemCount;
         this.voteRecords = voteRecords;
     }
 
@@ -52,12 +52,12 @@ public class VoteItem {
         this.voteItemName = voteItemName;
     }
 
-    public Integer getVoteCount() {
-        return voteCount;
+    public Integer getVoteItemCount() {
+        return voteItemCount;
     }
 
-    public void setVoteCount(Integer voteCount) {
-        this.voteCount = voteCount;
+    public void setVoteItemCount(Integer voteItemCount) {
+        this.voteItemCount = voteItemCount;
     }
 
 
