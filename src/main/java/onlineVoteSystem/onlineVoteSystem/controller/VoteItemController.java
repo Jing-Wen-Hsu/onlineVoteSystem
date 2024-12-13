@@ -1,11 +1,11 @@
 package onlineVoteSystem.onlineVoteSystem.controller;
 
-import onlineVoteSystem.onlineVoteSystem.dto.vote.VoteDetailsDTO;
+import onlineVoteSystem.onlineVoteSystem.dto.vote.VoteDetailsGetDTO;
+import onlineVoteSystem.onlineVoteSystem.dto.vote.VoteItemCreateDTO;
 import onlineVoteSystem.onlineVoteSystem.service.VoteItemService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,11 +19,17 @@ public class VoteItemController {
         this.voteItemService = voteItemService;
     }
 
-    // 提供取得所有投票項目名稱和計數的端點
+    // 獲取所有投票項目與投票數
     @GetMapping ("/getDatas")
-    public ResponseEntity<List<VoteDetailsDTO>> getAllVoteItems() {
-        List<VoteDetailsDTO> voteItems = voteItemService.getAllVoteItems();
+    public ResponseEntity<List<VoteDetailsGetDTO>> getAllVoteItems() {
+        List<VoteDetailsGetDTO> voteItems = voteItemService.getAllVoteItems();
         return ResponseEntity.ok(voteItems);
     }
 
+    // 新增投票項目
+    @PostMapping("/add")
+    public ResponseEntity<Void> addVoteItem(@RequestBody VoteItemCreateDTO voteItemCreateDTO) {
+        voteItemService.addVoteItem(voteItemCreateDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }

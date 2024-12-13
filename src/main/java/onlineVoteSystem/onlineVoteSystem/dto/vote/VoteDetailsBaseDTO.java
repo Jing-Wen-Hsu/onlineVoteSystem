@@ -1,13 +1,14 @@
 package onlineVoteSystem.onlineVoteSystem.dto.vote;
 
-public class VoteDetailsDTO {
+
+public abstract class VoteDetailsBaseDTO {
     private String voteItemName;
     private Integer voteItemCount;
 
-    public VoteDetailsDTO() {
+    public VoteDetailsBaseDTO() {
     }
 
-    public VoteDetailsDTO(String voteItemName, Integer voteItemCount) {
+    public VoteDetailsBaseDTO(String voteItemName, Integer voteItemCount) {
         this.voteItemName = voteItemName;
         this.voteItemCount = voteItemCount;
     }
