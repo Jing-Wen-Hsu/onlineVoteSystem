@@ -21,4 +21,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     //登入
     @Procedure(name = "sp_login_user")
     void loginUser(String username, String password, @Param("p_is_valid") Integer isValid);
+
+    // 使用用戶名稱尋找用戶
+    @Procedure(procedureName = "sp_find_user_by_username")
+    User findUserByUsername(@Param("p_username") String username);
 }
