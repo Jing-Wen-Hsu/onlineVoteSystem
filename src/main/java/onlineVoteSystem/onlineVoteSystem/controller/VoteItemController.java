@@ -1,9 +1,9 @@
 package onlineVoteSystem.onlineVoteSystem.controller;
 
+import onlineVoteSystem.onlineVoteSystem.dto.vote.VoteDetailsDeleteDTO;
 import onlineVoteSystem.onlineVoteSystem.dto.vote.VoteDetailsGetDTO;
-import onlineVoteSystem.onlineVoteSystem.dto.vote.VoteItemCreateDTO;
+import onlineVoteSystem.onlineVoteSystem.dto.vote.VoteDetailsCreateDTO;
 import onlineVoteSystem.onlineVoteSystem.service.VoteItemService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +28,17 @@ public class VoteItemController {
 
     // 新增投票項目
     @PostMapping("/add")
-    public ResponseEntity<Void> addVoteItem(@RequestBody VoteItemCreateDTO voteItemCreateDTO) {
-        voteItemService.addVoteItem(voteItemCreateDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<String> addVoteItem(@RequestBody VoteDetailsCreateDTO voteDetailsCreateDTO) {
+
+       String response =  voteItemService.addVoteItem(voteDetailsCreateDTO);
+        return ResponseEntity.ok(response);
+    }
+
+    //刪除投票項目
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteVoteItem(@RequestBody VoteDetailsDeleteDTO voteDetailsDeleteDTO) {
+
+        String response =  voteItemService.deleteVoteItem(voteDetailsDeleteDTO);
+        return ResponseEntity.ok(response);
     }
 }

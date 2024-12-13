@@ -2,8 +2,9 @@ package onlineVoteSystem.onlineVoteSystem.service;
 
 
 import jakarta.transaction.Transactional;
+import onlineVoteSystem.onlineVoteSystem.dto.vote.VoteDetailsDeleteDTO;
 import onlineVoteSystem.onlineVoteSystem.dto.vote.VoteDetailsGetDTO;
-import onlineVoteSystem.onlineVoteSystem.dto.vote.VoteItemCreateDTO;
+import onlineVoteSystem.onlineVoteSystem.dto.vote.VoteDetailsCreateDTO;
 import onlineVoteSystem.onlineVoteSystem.repository.VoteItemRepository;
 import org.springframework.stereotype.Service;
 
@@ -34,10 +35,29 @@ public class VoteItemService {
         return voteDetailsGetDTOS;
     }
 
+
     // 新增投票項目
-    public void addVoteItem(VoteItemCreateDTO voteItemCreateDTO) {
+    public String addVoteItem(VoteDetailsCreateDTO voteDetailsCreateDTO) {
         // 呼叫 Repository 的方法來新增投票項目
-        voteItemRepository.addVoteItem(voteItemCreateDTO.getVoteItemName());
+        // 檢查 voteItemName 是否已存在
+        if (voteItemRepository.existsByVoteItemName(voteDetailsCreateDTO.getVoteItemName())) {
+            return "投票項目名稱已存在";
+        } else {
+            voteItemRepository.addVoteItem(voteDetailsCreateDTO.getVoteItemName());
+            return "新增投票項目成功";
+        }
     }
 
+    // 刪除投票項目
+    @Transactional
+    public String deleteVoteItem(VoteDetailsDeleteDTO voteDetailsDeleteDTO) {
+        // 檢查投票項目是否存在
+        if (voteItemRepository.existsByVoteItemName(voteDetailsDeleteDTO.getVoteItemName())) {
+            // 刪除投票項目
+            voteItemRepository.deleteVoteItem(voteDetailsDeleteDTO.getVoteItemName());
+            return "刪除投票項目成功";
+        } else {
+            return "投票項目名稱不存在";
+        }
+    }
 }

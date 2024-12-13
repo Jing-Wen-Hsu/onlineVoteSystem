@@ -18,4 +18,16 @@ public interface VoteItemRepository extends JpaRepository <VoteItem,Long> {
     // 新增
     @Procedure(procedureName = "sp_add_vote_item")
     void addVoteItem(@Param("vote_item_name") String voteItemName);
+
+    // 刪除
+    @Procedure(procedureName = "sp_delete_vote_item")
+    void deleteVoteItem(@Param("p_vote_item_name") String voteItemName);
+
+
+
+
+    // 檢查項目名稱是否存在
+    @Procedure(procedureName = "sp_exists_vote_item_name")
+    boolean existsByVoteItemName(@Param("p_vote_item_name") String voteItemName);
+
 }

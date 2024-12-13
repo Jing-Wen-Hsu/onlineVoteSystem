@@ -17,7 +17,7 @@ public class VoteItem {
 
     @NotEmpty(message = "投票項目為必填項目")
     @Size(min = 2, max = 100, message = "投票項目名稱長度應介於 2 到 100 之間")
-    @Column(name = "vote_item_name", length = 100 , nullable = false)
+    @Column(name = "vote_item_name", length = 100 , nullable = false , unique = true)
     private String voteItemName;
 
     @Column(name = "vote_item_count", nullable = false)
