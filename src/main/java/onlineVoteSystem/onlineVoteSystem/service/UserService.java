@@ -53,6 +53,7 @@ public class UserService {
         }
         // 登入成功後，設置會話
         session.setAttribute("user", user);  // 保存用戶對象到會話中（或保存用戶ID）
+
         return "登入成功";
     }
 
@@ -67,6 +68,8 @@ public class UserService {
     public String checkUserSession() {
         // 從 session 中獲取用戶資料（例如：username 或 User 物件）
         User user = (User) session.getAttribute("user");
+
+     //   System.out.println(user);
 
         if (user != null) {
             return "當前登入用戶: " + user.getUsername() + "，Session ID: " + session.getId();  // 返回用戶名

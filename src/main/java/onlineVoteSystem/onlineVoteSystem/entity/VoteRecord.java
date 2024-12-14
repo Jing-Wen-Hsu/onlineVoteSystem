@@ -1,7 +1,6 @@
 package onlineVoteSystem.onlineVoteSystem.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "vote_records")

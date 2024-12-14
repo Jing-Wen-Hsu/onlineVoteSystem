@@ -13,7 +13,7 @@ public class User {
     @Column(name = "user_id")
     private Long userId; // 用戶ID
 
-    @Column(name = "user_name",nullable = false, length = 500)
+    @Column(name = "username",nullable = false, length = 500)
     private String username; // 用戶名
 
     @Column(nullable = false , length = 255)
