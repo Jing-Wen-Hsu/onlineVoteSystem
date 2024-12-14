@@ -29,12 +29,19 @@ public class VoteRecordService {
 
     // 新增投票紀錄
     @Transactional
-    public void processVotes(List<String> voteItems, String username) throws JsonProcessingException {
+    public String processVotes(List<String> voteItems, String username) throws JsonProcessingException {
+        // 檢查該使用者是否已經投過票
+
+        if (userRepository.checkUsernameExists(username)) {
+            return "您已投過票";
+        }
+
         // 將 List<String> 轉換為 JSON 字符串
         String voteItemsJson = new ObjectMapper().writeValueAsString(voteItems);
 
         // 調用儲存過程來處理投票
         voteRecordRepository.processVote(username, voteItemsJson);
-
+        return "投票成功";
     }
 }
+// 檢查用戶是否已存在

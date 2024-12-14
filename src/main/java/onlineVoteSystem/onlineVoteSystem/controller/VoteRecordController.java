@@ -29,7 +29,7 @@ public class VoteRecordController {
 
     // 新增投票紀錄
     @PostMapping("/addRecords")
-    public ResponseEntity<?> vote(@RequestBody VoteRequestDTO voteRequestDTO) throws JsonProcessingException {
+    public ResponseEntity<String> vote(@RequestBody VoteRequestDTO voteRequestDTO) throws JsonProcessingException {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             return ResponseEntity.status(401).body("未登入，請先登入");
@@ -38,8 +38,8 @@ public class VoteRecordController {
         // 直接取得投票項目列表
         List<String> voteItems = voteRequestDTO.getVoteItemName();
 
-        voteRecordService.processVotes(voteItems, user.getUsername());
-        return ResponseEntity.ok("投票成功");
+        String voteResult = voteRecordService.processVotes(voteItems, user.getUsername());
+        return ResponseEntity.ok(voteResult);
     }
 
 }
