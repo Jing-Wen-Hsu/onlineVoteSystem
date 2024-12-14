@@ -5,7 +5,7 @@
 CREATE DATABASE online_vote_system;
 
 
-2.本系統設定連接MySQL資料庫，請於目錄建立.env檔，並加入以下內容：
+2.本系統設定連接MySQL資料庫，為方便測試已於目錄建立.env檔，請自行更改資料庫帳號密碼。
 DATASOURCE_USERNAME=輸入自己資料庫的帳號
 DATASOURCE_PASSWORD=輸入自己資料庫的密碼
 
