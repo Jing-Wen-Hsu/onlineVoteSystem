@@ -1,6 +1,6 @@
 專案名稱:線上投票系統 online_vote_system
 
-1.clone此專案並建立資料庫，且資料庫命名為online_vote_system
+1.clone此專案並建立資料庫，且資料庫命名為online_vote_system。
 參考SQL語法:
 CREATE DATABASE online_vote_system;
 
