@@ -26,7 +26,7 @@ public class UserService {
     // 註冊
     public String registerUser(@Valid RegisterDTO registerDTO) {
         // 檢查用戶是否已存在
-        if (userRepository.checkUsernameExists(registerDTO.getUsername())) {
+        if (userRepository.checkUserExists(registerDTO.getUsername())) {
             return "用戶名已存在";
         }
 

@@ -9,9 +9,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    // 檢查用戶是否已存在
+    // 檢查用戶是否投過票
     @Procedure(procedureName = "sp_check_username_exists")
-    boolean checkUsernameExists(@Param("p_username") String phoneNumber);
+    boolean checkUsernameExists(@Param("p_username") String username);
+
+    // 檢查用戶是否已存在(註冊)
+    @Procedure(procedureName = "sp_check_user_exists")
+    boolean checkUserExists(@Param("p_username") String username);
 
     // 註冊
     // 使用 @Procedure 註解來調用儲存過程

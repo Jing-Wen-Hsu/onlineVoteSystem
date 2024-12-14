@@ -23,7 +23,7 @@ public class VoteItem {
     @Column(name = "vote_item_count", nullable = false)
     private Integer voteItemCount;   // 記錄該投票項目的投票次數
 
-    @OneToMany(mappedBy = "voteItem")
+    @OneToMany(mappedBy = "voteItem" , cascade = CascadeType.ALL)
     private List<VoteRecord> voteRecords;
 
     public VoteItem() {

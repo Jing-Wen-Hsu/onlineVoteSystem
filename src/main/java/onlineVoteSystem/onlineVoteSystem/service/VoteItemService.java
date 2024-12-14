@@ -57,7 +57,7 @@ public class VoteItemService {
             voteItemRepository.deleteVoteItem(voteDetailsDeleteDTO.getVoteItemName());
             return "刪除投票項目成功";
         } else {
-            return "投票項目名稱不存在";
+            return "投票項目不存在";
         }
     }
 }
