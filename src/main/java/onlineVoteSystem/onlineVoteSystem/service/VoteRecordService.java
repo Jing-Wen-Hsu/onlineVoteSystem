@@ -30,12 +30,18 @@ public class VoteRecordService {
     // 新增投票紀錄
     @Transactional
     public String processVotes(List<String> voteItems, String username) throws JsonProcessingException {
-        // 檢查該使用者是否已經投過票
 
+        // 檢查該使用者是否已經投過票
         if (userRepository.checkUsernameExists(username)) {
             return "您已投過票";
         }
 
+        // 檢查所有投票項目是否在 vote_items 表中存在
+        for (String voteItem : voteItems) {
+            if (!voteItemRepository.existsByVoteItemName(voteItem)) {
+                return  "【 " + voteItem + " 】為無效的投票項目。" ;
+            }
+        }
         // 將 List<String> 轉換為 JSON 字符串
         String voteItemsJson = new ObjectMapper().writeValueAsString(voteItems);
 
@@ -44,4 +50,3 @@ public class VoteRecordService {
         return "投票成功";
     }
 }
-// 檢查用戶是否已存在

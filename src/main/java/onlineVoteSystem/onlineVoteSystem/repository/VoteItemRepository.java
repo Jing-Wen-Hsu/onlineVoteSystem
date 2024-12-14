@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface VoteItemRepository extends JpaRepository <VoteItem,Long> {
 
-    //查詢
+    // 查詢
     @Procedure(procedureName  = "sp_get_all_vote_items")
     List<Object[]> findAllByOrderByVoteItemCountDesc();
 
@@ -22,7 +22,6 @@ public interface VoteItemRepository extends JpaRepository <VoteItem,Long> {
     // 刪除
     @Procedure(procedureName = "sp_delete_vote_item")
     void deleteVoteItem(@Param("p_vote_item_name") String voteItemName);
-
 
 
 
